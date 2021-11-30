@@ -196,6 +196,7 @@ export class RegistrationController {
         approveState: request.approveState,
         email: (await registration.user).email,
         name: registration.name,
+        stuID: registration.id,
         school: (await registration.organization).organizationName,
         msg: request.msg,
       },
