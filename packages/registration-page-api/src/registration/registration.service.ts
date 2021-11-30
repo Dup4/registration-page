@@ -108,6 +108,7 @@ export class RegistrationService {
         return <RegistrationMetaDto>{
           email: (await registration.user).email,
           name: registration.name,
+          registrationId: registration.registrationId,
           id: registration.id,
           organizationId: registration.organizationId,
           organizationName: (await registration.organization).organizationName,
