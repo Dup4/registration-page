@@ -197,11 +197,7 @@ export class RegistrationController {
         email: (await registration.user).email,
         name: registration.name,
         school: (await registration.organization).organizationName,
-        ...(request.msg
-          ? {
-              msg: request.msg,
-            }
-          : {}),
+        msg: request.msg,
       },
       (
         await registration.user
