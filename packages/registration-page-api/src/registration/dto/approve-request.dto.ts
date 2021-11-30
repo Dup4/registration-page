@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-import { IsEnum, IsNumber } from 'class-validator';
+import { IsEnum, IsNumber, IsString } from 'class-validator';
 import { ApproveState } from '../ragistration.entity';
 
 export class ApproveRequestDto {
@@ -11,4 +11,8 @@ export class ApproveRequestDto {
   @ApiProperty()
   @IsEnum(ApproveState)
   approveState: ApproveState;
+
+  @ApiProperty()
+  @IsString()
+  msg: string;
 }
