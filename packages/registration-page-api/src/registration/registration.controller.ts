@@ -12,6 +12,8 @@ import {
   EventReportType,
 } from '@/event-report/event-report.service';
 
+import { ConfigService } from '@/config/config.service';
+
 import {
   AddOrganizationRequestDto,
   AddOrganizationResponseDto,
@@ -39,6 +41,7 @@ export class RegistrationController {
     private readonly mailService: MailService,
     private readonly auditService: AuditService,
     private readonly eventReportService: EventReportService,
+    private readonly configService: ConfigService,
   ) {}
 
   @ApiBearerAuth()
@@ -90,6 +93,12 @@ export class RegistrationController {
     if (!currentUser || currentUser.isAdmin) {
       return {
         error: RegistrationResponseError.PERMISSION_DENIED,
+      };
+    }
+
+    if (this.configService.config.server?.isFinished === true) {
+      return {
+        error: RegistrationResponseError.TOO_LATE,
       };
     }
 

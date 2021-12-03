@@ -30,6 +30,9 @@ class ServerConfig {
   @IsString({ each: true })
   readonly trustProxy: string;
 
+  @IsBoolean()
+  readonly isFinished: boolean;
+
   @IsOptional()
   @IsInt()
   @Min(0)
