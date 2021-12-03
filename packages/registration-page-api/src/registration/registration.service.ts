@@ -90,6 +90,7 @@ export class RegistrationService {
         { registrationId: registration.registrationId },
         {
           organizationId: registration.organizationId,
+          approveState: registration.approveState,
           name,
           id,
         },
