@@ -85,7 +85,20 @@ export class RegistrationService {
       registration.approveState = ApproveState.PENDING;
     }
 
-    await this.registrationRepository.save(registration);
+    if (RegistrationType.Modify === registrationType) {
+      await this.registrationRepository.update(
+        { registrationId: registration.registrationId },
+        {
+          organizationId: registration.organizationId,
+          name,
+          id,
+        },
+      );
+    }
+
+    if (RegistrationType.New === registrationType) {
+      await this.registrationRepository.save(registration);
+    }
 
     return registrationType;
   }
